@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should rendered MovieWall should render my component 1`] = `
+Array [
+  <div
+    className="photoGrid"
+  >
+    <div>
+      <figure>
+        <Photo
+          url="/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg"
+        />
+        <figcaption>
+          <h4>
+            Title: 
+            The Lion King
+          </h4>
+        </figcaption>
+        <figcaption>
+          <h4>
+            Rating: 
+            7.2
+          </h4>
+        </figcaption>
+        <figcaption>
+          <h4>
+            Popularity: 
+          </h4>
+        </figcaption>
+        <figcaption>
+          <h4>
+            Genre: 
+          </h4>
+        </figcaption>
+      </figure>
+    </div>
+  </div>,
+]
+`;
