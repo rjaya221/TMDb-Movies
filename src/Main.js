@@ -130,7 +130,7 @@ ratingChangeListener=(e)=>{
        
          <div style={{position:'relative',left:'100px'}}>
              <div style={{width: '440px', alignItems: 'center'}}>
-                 <label>Select Filter: </label>
+                 <label><h3>Select Filter: </h3></label>
                  <div class="styled-select blue semi-square">
 
                     <select onChange={this.filterTypeChange}>
