@@ -7,7 +7,7 @@ class RatingComponent extends Component {
       
         
   render() {
-   return (<div className="styled-select blue semi-square" style={{display: 'flex', marginTop: '20px!important'}}><select defaultValue="3" onChange={this.props.ratingAction}>
+   return (<div className="styled-select blue semi-square"><select defaultValue="3" onChange={this.props.ratingAction}>
       {
                    this.state.rating.map((rating,index)=><React.Fragment key={index}><option value={rating}>{rating}</option></React.Fragment>)
                  }</select></div>);  
