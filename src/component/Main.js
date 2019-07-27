@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import './App.css';
-import './index.css';
+import '../App.css';
+import '../index.css';
 import MovieWall from './MovieWall';
+//import {fetchStart} from '../redux/action'
 import RatingComponent from './RatingComponent';
 
-
-
+console.log("Main is invoked");
 
 class Main extends Component {
   constructor(props){
     super(props);
+    console.log("Inside constructor ",props);
     this.state = {moviesList:[],genres:[],genreFilter:[],checked:3,filteredMovies:[],selectedFilterType:"-1",isConfirmed:false};
-   
+    console.log("state initialized in main ");
   }
   componentDidUpdate(){
     console.log("componentDidUpdate")
@@ -21,9 +22,11 @@ class Main extends Component {
   }
   componentDidMount(){
     console.log("componentDidMount",this.props);
-    this.props.dispatch({ type: 'GET_TODO_DATA' });
-    }
-
+    this.props.dispatch({ type: 'GET_TODO_DATA',id:"6" });
+  }
+componentWillMount(){
+  console.log("componentWillMount")
+}
 
 
   filterTypeChange=(e)=> {
@@ -75,7 +78,7 @@ class Main extends Component {
       console.log("genreFilter ::::",genreFilter);
 
     let movieList =  this.state.moviesList;
-    let selectedMovieIds = [];
+   
     let selectedMovies = [];
      movieList.forEach(movie=>{
          let isallGenrePresent = true;
@@ -88,7 +91,6 @@ class Main extends Component {
          })
          //adding movie object when condition matching
          if(isallGenrePresent){
-            selectedMovieIds.push(Number(movie.id)) ;
             selectedMovies.push(movie);
          }
         
@@ -113,14 +115,14 @@ ratingChangeListener=(e)=>{
   }
   
   render() {
-  console.log(this.props.posts.results,"this.state.selectedFilterType",this.state.selectedFilterType);
+  
   return (
     <div>
     {!this.state.isConfirmed? 
     <div><h1>Welcome to TMDb Movies</h1>
     <div style={{position: 'relative',left: '630px'}}>
    <h2>Please Press the Confirm button to Continue. </h2>
-   <button style={{marginLeft: '130px', marginTop: '20px'}}  class="ui button" onClick={this.buttonClicked}>Confirm</button>
+   <button style={{marginLeft: '130px', marginTop: '20px'}}  className="ui button" onClick={this.buttonClicked}>Confirm</button>
    </div>
    </div>:
    <div>

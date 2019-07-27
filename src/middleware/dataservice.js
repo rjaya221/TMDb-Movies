@@ -1,16 +1,21 @@
 import request from 'superagent'
-
-const dataService = store => next => action => {
+import {MOVIE_URL,GENRE_URL} from '../constants/constant'
+const dataService  = store =>next => action=> {
   /*
   Pass all actions through by default
   */
   next(action)
+  console.log("middleware invoked",action);
   switch (action.type) {
     case 'GET_TODO_DATA':
-      /*
-    In case we receive an action to send an API request, send the appropriate request
-    */
-      request.get('https://api.themoviedb.org/3/movie/now_playing?api_key=fa39a67213a167e55b22d949a1df5022&language=en-US&page=1').end((err, moviesRes) => {
+         /*
+          In case we receive an action to send an API request, send the appropriate request
+         */
+
+         let url =MOVIE_URL.concat(action.id);
+         console.log("URL ::",url)
+
+       request.get(url).end((err, moviesRes) => {
         if (err) {
           /*
           in case there is any error, dispatch an action containing the error
@@ -20,7 +25,7 @@ const dataService = store => next => action => {
             err
           })
         }
-        request.get('https://api.themoviedb.org/3/genre/movie/list?api_key=fa39a67213a167e55b22d949a1df5022&language=en-US').end((err, genreRes) => {
+        request.get(GENRE_URL).end((err, genreRes) => {
             if (err) {
               /*
               in case there is any error, dispatch an action containing the error
@@ -34,28 +39,29 @@ const dataService = store => next => action => {
             let data = {results:JSON.parse(moviesRes.text).results,genres:JSON.parse(genreRes.text).genres}
             let movieList=[];
             if(data.results && data.genres){
+              console.log("data::",data.results);
+              console.log("genres::",data.genres);
+
+              var genresMap = new Map(data.genres.map(i => [i.id, i.name]));
                 data.results.forEach(movie => {
-                    movie = {...movie,genreString:[]};
-                    data.genres.forEach(genre=>{
-                     
-                      movie.genre_ids.forEach(movieGenre=>{
-                        if(Number(genre.id)===Number(movieGenre)){
-                           // console.log(genre.id,'   ',movieGenre);
-                              movie.genreString.push(genre.name,","); 
-                            }
-                          })
-                        });
-                        
-                        movieList.push(movie);
-                      });
+                  console.log("movie::",movie);
+                  movie = {...movie,genreString:[]};
+                  console.log("new movie object::",movie);
+                  movie.genre_ids.map(movieGenre=>{
+                      
+                     if(genresMap[movieGenre]){
+                          movie.genreString.push(genresMap[movieGenre].name,","); 
+                              }
+                           return movie;
+                           });
+                         
+                          movieList.push(movie);
+                       });
                       movieList =  movieList.sort((a,b)=>b.popularity-a.popularity);
+                       console.log('movieList::::',movieList);
                       data ={results:movieList,genres:data.genres};
-
-
-                    }
-
-        
-        /*
+            }
+          /*
         Once data is received, dispatch an action telling the application
         that data was received successfully, along with the parsed data
         */

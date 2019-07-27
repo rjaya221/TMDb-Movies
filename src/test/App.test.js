@@ -1,8 +1,8 @@
 import React from 'react';
-import { shallow } from './enzyme';
+import { shallow } from '../enzyme';
 import configureMockStore from "redux-mock-store";
 import { Provider } from "react-redux";
-import App from './index';
+import App from '../App';
 import { BrowserRouter } from 'react-router-dom';
 
 const mockStore = configureMockStore();

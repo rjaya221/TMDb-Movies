@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from './enzyme';
-import Photo from './Photo';
+import { shallow } from '../enzyme';
+import Photo from '../Photo';
 
 describe("should rendered Photo", () => {
   it("should render my component", () => {

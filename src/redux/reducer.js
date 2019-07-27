@@ -1,4 +1,5 @@
 
+
 const postReducer = function posts(state = [],action){
     console.log('Action Type::',action.type);
     switch (action.type) {
@@ -8,6 +9,8 @@ const postReducer = function posts(state = [],action){
       */
         case 'GET_TODO_DATA_RECEIVED':
           return action.data
+        case 'GET_TODO_DATA_ERROR':
+          return action.err
         default:
           return state
       }
