@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import '../index.css';
 import MovieWall from './MovieWall';
-//import {fetchStart} from '../redux/action'
+import fetchDataAction from '../redux/action'
 import RatingComponent from './RatingComponent';
 
 console.log("Main is invoked");
@@ -21,8 +21,8 @@ class Main extends Component {
     console.log("componentWillUpdate")
   }
   componentDidMount(){
-    console.log("componentDidMount",this.props);
-    this.props.dispatch({ type: 'GET_TODO_DATA',id:"6" });
+    console.log("componentDidMount");
+    this.props.dispatch(fetchDataAction("6"));
   }
 componentWillMount(){
   console.log("componentWillMount")

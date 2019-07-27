@@ -1,9 +1,9 @@
-function fetchData(index){
+const fetchDataAction=function fetchData(index){
     return {
         type: 'GET_TODO_DATA',
-        index: index
+        id: index
     }
 
 }
 
-export default fetchData;
+export default fetchDataAction;
