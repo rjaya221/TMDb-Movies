@@ -39,16 +39,25 @@ const dataService  = store =>next => action=> {
     
             let data = {results:JSON.parse(moviesRes.text).results,genres:JSON.parse(genreRes.text).genres}
             let movieList=[];
+            let applicableGenreList = [];
+            let applicableGenreKeys = [];
             if(data.results && data.genres){
               //console.log("data::",data.results);
              // console.log("genres::",data.genres);
 
               var genresMap = new Map(data.genres.map(i => [i.id, i.name]));
+              console.log('genresMap::::',genresMap);
                 data.results.forEach(movie => {
                 //  console.log("movie::",movie);
                   movie = {...movie,genreString:[]};
                  // console.log("new movie object::",movie);
                   movie.genre_ids.map(movieGenre=>{
+                    if(!applicableGenreKeys.includes(movieGenre) && applicableGenreList.length!==data.genres.length){
+                      console.log(movieGenre," ",applicableGenreList," ",applicableGenreList.includes(movieGenre));
+                          applicableGenreList.push({id:movieGenre,name:genresMap.get(movieGenre)});
+                          applicableGenreKeys.push(movieGenre);
+                          console.log(" sss",applicableGenreList);
+                        }
                       
                      if(genresMap[movieGenre]){
                           movie.genreString.push(genresMap[movieGenre].name,","); 
@@ -59,8 +68,9 @@ const dataService  = store =>next => action=> {
                           movieList.push(movie);
                        });
                       movieList =  movieList.sort((a,b)=>b.popularity-a.popularity);
-                     //  console.log('movieList::::',movieList);
-                      data ={results:movieList,genres:data.genres};
+                       console.log('data.genres::::',data.genres);
+                       console.log('applicableGenreList::::',applicableGenreList);
+                      data ={results:movieList,genres:applicableGenreList};
             }
           /*
         Once data is received, dispatch an action telling the application
