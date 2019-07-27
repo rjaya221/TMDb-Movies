@@ -25,6 +25,7 @@ const dataService  = store =>next => action=> {
             err
           })
         }
+     
         request.get(GENRE_URL).end((err, genreRes) => {
             if (err) {
               /*
@@ -39,14 +40,14 @@ const dataService  = store =>next => action=> {
             let data = {results:JSON.parse(moviesRes.text).results,genres:JSON.parse(genreRes.text).genres}
             let movieList=[];
             if(data.results && data.genres){
-              console.log("data::",data.results);
-              console.log("genres::",data.genres);
+              //console.log("data::",data.results);
+             // console.log("genres::",data.genres);
 
               var genresMap = new Map(data.genres.map(i => [i.id, i.name]));
                 data.results.forEach(movie => {
-                  console.log("movie::",movie);
+                //  console.log("movie::",movie);
                   movie = {...movie,genreString:[]};
-                  console.log("new movie object::",movie);
+                 // console.log("new movie object::",movie);
                   movie.genre_ids.map(movieGenre=>{
                       
                      if(genresMap[movieGenre]){
@@ -58,7 +59,7 @@ const dataService  = store =>next => action=> {
                           movieList.push(movie);
                        });
                       movieList =  movieList.sort((a,b)=>b.popularity-a.popularity);
-                       console.log('movieList::::',movieList);
+                     //  console.log('movieList::::',movieList);
                       data ={results:movieList,genres:data.genres};
             }
           /*

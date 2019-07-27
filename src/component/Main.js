@@ -75,16 +75,16 @@ componentWillMount(){
       genreFilter = genreFilter.sort((a,b)=>a-b);
       this.setState({genreFilter});
 
-      console.log("genreFilter ::::",genreFilter);
+      //console.log("genreFilter ::::",genreFilter);
 
     let movieList =  this.state.moviesList;
    
     let selectedMovies = [];
      movieList.forEach(movie=>{
          let isallGenrePresent = true;
-         console.log("movie.genre_ids ::::",movie.genre_ids);
+        // console.log("movie.genre_ids ::::",movie.genre_ids);
         genreFilter.forEach(genre=>{
-            console.log("movie.includes ::::",movie.genre_ids.toString().includes(genre));
+          //  console.log("movie.includes ::::",movie.genre_ids.toString().includes(genre));
                 if(!movie.genre_ids.toString().includes(genre)){
                     isallGenrePresent =false;
                 }
@@ -95,7 +95,7 @@ componentWillMount(){
          }
         
       })
-      console.log("filteredMovies  ",selectedMovies);
+      //console.log("filteredMovies  ",selectedMovies);
       this.setState({filteredMovies:selectedMovies});
 
   }
@@ -105,7 +105,7 @@ ratingChangeListener=(e)=>{
           console.log("selected rating ::",e.target.value);
           let movieList =this.state.moviesList;
           movieList =movieList.filter(movie=>Number(movie.vote_average) >= Number(e.target.value));
-          console.log("filteredMovies  ",movieList);
+        //  console.log("filteredMovies  ",movieList);
           this.setState({filteredMovies:movieList});
   }
   buttonClicked=()=>{
@@ -127,13 +127,16 @@ ratingChangeListener=(e)=>{
    </div>:
    <div>
    <h1>TMDb Movies</h1>
+
+  
+
  
 <div style={{display:'flex'}}>
-       
+    {this.props.isLoading?<p><h1>Loading…</h1></p>:""}
          <div style={{position:'relative',left:'100px'}}>
              <div style={{width: '440px', alignItems: 'center'}}>
                  <label><h3>Select Filter: </h3></label>
-                 <div class="styled-select blue semi-square">
+                 <div className="styled-select blue semi-square">
 
                     <select onChange={this.filterTypeChange}>
                         <option value="-1">Select</option>
