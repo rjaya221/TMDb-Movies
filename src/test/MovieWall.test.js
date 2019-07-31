@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from '../enzyme';
-import MovieWall from '../MovieWall';
+import MovieWall from '../component/MovieWall';
 
 describe("should rendered MovieWall", () => {
   it("should render my component", () => {

@@ -53,14 +53,17 @@ const dataService  = store =>next => action=> {
                  // console.log("new movie object::",movie);
                   movie.genre_ids.map(movieGenre=>{
                     if(!applicableGenreKeys.includes(movieGenre) && applicableGenreList.length!==data.genres.length){
-                      console.log(movieGenre," ",applicableGenreList," ",applicableGenreList.includes(movieGenre));
+
+
+
+                      console.log(movieGenre," ",applicableGenreList," ",applicableGenreList.includes(movieGenre),"  ",genresMap.get(movieGenre));
                           applicableGenreList.push({id:movieGenre,name:genresMap.get(movieGenre)});
                           applicableGenreKeys.push(movieGenre);
                           console.log(" sss",applicableGenreList);
                         }
                       
-                     if(genresMap[movieGenre]){
-                          movie.genreString.push(genresMap[movieGenre].name,","); 
+                     if(genresMap.get(movieGenre)){
+                          movie.genreString.push(genresMap.get(movieGenre),","); 
                               }
                            return movie;
                            });
