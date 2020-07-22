@@ -17,6 +17,7 @@
     "semantic-ui-react": "^0.87.3",
     "superagent": "^5.1.0"
   },
+  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
