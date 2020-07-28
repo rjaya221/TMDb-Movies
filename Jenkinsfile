@@ -6,7 +6,8 @@ pipeline {
             args '-p 3000:3000'
         }
     }
-    environment {
+     environment {
+        npm_config_cache = 'npm-cache'
         CI = 'true'
     }
     stages {
