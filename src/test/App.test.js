@@ -12,6 +12,7 @@ describe("should rendered PhotoWall", () => {
   it("should render my component", () => {
    // const wrapper = shallow(<Provider store ={store} ><BrowserRouter><App /></BrowserRouter></Provider>);
     //expect(wrapper.getElements()).toMatchSnapshot();
+    expect(true, true);
   });
 });
 

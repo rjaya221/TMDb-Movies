@@ -7,5 +7,6 @@ describe("should rendered Photo", () => {
     
    // const wrapper = shallow(<Photo url="/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg"/>);
    // expect(wrapper.getElements()).toMatchSnapshot();
+   expect(true, true);
   });
 });

@@ -7,6 +7,6 @@ describe("should rendered MovieWall", () => {
     //let props = [{vote_count: 754, id: 420818, video: false, vote_average: 7.2, title: "The Lion King",poster_path:"/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg"}]
  
    // const wrapper = shallow(<MovieWall moviesList={props}/>);
-   // expect(wrapper.getElements()).toMatchSnapshot();
+   expect(true, true);
   });
 });
